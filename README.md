@@ -5,11 +5,13 @@ This project uses Quarkus, the Supersonic Subatomic Java Framework.
 If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
 
 ## TODO
-- dmnを外部サービスで新規作成、更新、削除
-- kubernetes,dockerでのデプロイ
-- ログの設定
-- dmnの更新を無停止で適用する
-- テストコードの作成
+- [ ] kogitoサービスの起動
+- [ ] SwaggerUIからの送受信確認
+- [ ] dmnを外部サービスで新規作成、更新、削除
+- [ ] kubernetes,dockerでのデプロイ
+- [ ] ログの設定
+- [ ] dmnの更新を無停止で適用する
+- [ ] テストコードの作成
 
 ## 構築手順
 1.ルールファイルがない状態のプロジェクト作成
