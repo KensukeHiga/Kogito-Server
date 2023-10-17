@@ -5,8 +5,8 @@ This project uses Quarkus, the Supersonic Subatomic Java Framework.
 If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
 
 ## TODO
-- [ ] kogitoサービスの起動
-- [ ] SwaggerUIからの送受信確認
+- [x] kogitoサービスの起動
+- [x] SwaggerUIからの送受信確認
 - [ ] dmnを外部サービスで新規作成、更新、削除
 - [ ] kubernetes,dockerでのデプロイ
 - [ ] ログの設定
