@@ -1,2 +1,0 @@
-# kogito
-Kogito Server
