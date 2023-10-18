@@ -14,9 +14,9 @@
       <dmn:typeRef>string</dmn:typeRef>
     </dmn:itemComponent>
   </dmn:itemDefinition>
-  <dmn:inputData id="_70A90106-35D9-4928-B990-7C45CDADA1FE" name="Loyalty">
+  <dmn:inputData id="_70A90106-35D9-4928-B990-7C45CDADA1FE" name="loyalty">
     <dmn:extensionElements/>
-    <dmn:variable id="_A4C81F93-21C4-4282-AC92-616BC4477132" name="Loyalty" typeRef="LoyaltyIn"/>
+    <dmn:variable id="_A4C81F93-21C4-4282-AC92-616BC4477132" name="loyalty" typeRef="LoyaltyIn"/>
   </dmn:inputData>
   <dmn:decision id="_21A88D11-F1AC-4FD7-832A-33324866A7CF" name="decisionLoyalty">
     <dmn:extensionElements/>
@@ -27,7 +27,7 @@
     <dmn:decisionTable id="_6BE67D08-89B1-4FD1-9607-FBF43FB16111" hitPolicy="UNIQUE" preferredOrientation="Rule-as-Row">
       <dmn:input id="_D2DA370C-B47F-4AC1-B782-0ED835D6B6A6">
         <dmn:inputExpression id="_10333E70-ADB9-45C4-A77B-713E4918EC65" typeRef="string">
-          <dmn:text>Loyalty.rank</dmn:text>
+          <dmn:text>loyalty.rank</dmn:text>
         </dmn:inputExpression>
       </dmn:input>
       <dmn:output id="_BC92AE99-F66E-4014-A410-8AC3F8210846" name="discountRate" typeRef="number"/>
