@@ -8,8 +8,8 @@ import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 @Path("/hello")
 public class GreetingResource {
-    @ConfigProperty(name = "greeting.message")
-    String message;
+   @ConfigProperty(name = "greeting.message")
+   String message;
 
     @GET
     @Produces(MediaType.TEXT_PLAIN)
