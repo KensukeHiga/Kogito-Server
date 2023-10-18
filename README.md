@@ -7,6 +7,7 @@ If you want to learn more about Quarkus, please visit its website: https://quark
 ## TODO
 - [x] kogitoサービスの起動
 - [x] SwaggerUIからの送受信確認
+- [x] 外部Springサービスからの送受信確認
 - [ ] dmnを外部サービスで新規作成、更新、削除
 - [ ] kubernetes,dockerでのデプロイ
 - [ ] ログの設定
