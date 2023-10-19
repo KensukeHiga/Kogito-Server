@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dmn:definitions xmlns:dmn="http://www.omg.org/spec/DMN/20180521/MODEL/" xmlns="https://kiegroup.org/dmn/_D4D51DCF-40B1-440E-8A88-51B8C280C785" xmlns:feel="http://www.omg.org/spec/DMN/20180521/FEEL/" xmlns:kie="http://www.drools.org/kie/dmn/1.2" xmlns:dmndi="http://www.omg.org/spec/DMN/20180521/DMNDI/" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" id="_FFA8B78A-5206-4046-91C9-B07F0999047C" name="CreateTodo" typeLanguage="http://www.omg.org/spec/DMN/20180521/FEEL/" namespace="https://kiegroup.org/dmn/_D4D51DCF-40B1-440E-8A88-51B8C280C785">
+  <dmn:extensionElements/>
+  <dmn:itemDefinition id="_D9A7FB5A-C526-4041-AF7F-BA78CE70B373" name="formRequest" isCollection="false">
+    <dmn:itemComponent id="_AA5DD8E9-5D7B-469D-9281-09548BAECF65" name="name" isCollection="false">
+      <dmn:typeRef>string</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_A6D6F902-4277-404D-A0CD-8991B28F6E83" name="content" isCollection="false">
+      <dmn:typeRef>string</dmn:typeRef>
+    </dmn:itemComponent>
+  </dmn:itemDefinition>
+  <dmn:itemDefinition id="_33078DA2-C5FA-4609-BB05-3BED25FF5BED" name="TodoResponse" isCollection="false">
+    <dmn:itemComponent id="_CBAD5246-3343-4826-B293-6D092D66698F" name="result" isCollection="false">
+      <dmn:typeRef>string</dmn:typeRef>
+      <dmn:allowedValues kie:constraintType="enumeration" id="_8FD2FFF9-4F65-4477-BAB8-8F7B4446ED9A">
+        <dmn:text>"PROCESSING", "SUCCESS", "FAILED"</dmn:text>
+      </dmn:allowedValues>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_12D73F5D-DB5B-4935-98A7-DF226A6216F4" name="message" isCollection="false">
+      <dmn:typeRef>string</dmn:typeRef>
+    </dmn:itemComponent>
+  </dmn:itemDefinition>
+  <dmn:inputData id="_AD56B6CB-A7A4-41B3-8388-4BEC80F3DE34" name="formRequest">
+    <dmn:description>TodoFormから送信された内容です。</dmn:description>
+    <dmn:extensionElements/>
+    <dmn:variable id="_B1818DA6-4241-4518-B240-0D869A6C8747" name="formRequest" typeRef="formRequest"/>
+  </dmn:inputData>
+  <dmn:decision id="_F462DBD7-A2A5-41CF-9415-9F7D6E72C57B" name="Decision-1">
+    <dmn:extensionElements/>
+    <dmn:variable id="_FD2B62B7-5FD8-41C9-AB6D-5020ECB9C969" name="Decision-1" typeRef="TodoResponse"/>
+    <dmn:informationRequirement id="_C8DF134D-C8F4-49D5-B04B-4BB26FB9EC01">
+      <dmn:requiredInput href="#_AD56B6CB-A7A4-41B3-8388-4BEC80F3DE34"/>
+    </dmn:informationRequirement>
+    <dmn:decisionTable id="_EF2068F0-2C0E-4FD4-B627-F962532BCCFD" hitPolicy="FIRST" preferredOrientation="Rule-as-Row">
+      <dmn:input id="_C770B127-9571-4674-A6A4-36692337E1CA">
+        <dmn:inputExpression id="_AE35B2EC-95FB-4BAD-8285-0BF6C45F5064" typeRef="string">
+          <dmn:text>formRequest.content</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:input id="_2C90FEEB-AAB7-4BD1-BD21-8930B2A0656D">
+        <dmn:inputExpression id="_AC080A3D-536A-4A7D-A966-284ADEFAE588" typeRef="string">
+          <dmn:text>formRequest.name</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:output id="_D822AE32-B19A-41A0-82D3-3487DE507F5E" name="message" typeRef="string"/>
+      <dmn:output id="_4E4B8A0D-4DF6-49F1-804F-BDECC8EA7CEB" name="result" typeRef="string">
+        <dmn:outputValues kie:constraintType="enumeration" id="_DD4F33BD-62BA-4800-AF3B-564D6934F18F">
+          <dmn:text>"PROCESSING", "SUCCESS", "FAILED"</dmn:text>
+        </dmn:outputValues>
+      </dmn:output>
+      <dmn:annotation name="annotation-1"/>
+      <dmn:rule id="_4FD4D511-8737-4152-BE05-F2653C493046">
+        <dmn:inputEntry id="_58EDA757-7C71-4088-8D4D-6826ADD9F0F9">
+          <dmn:text>string length() &gt; 30</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_679F75E2-22A1-48D7-888D-0411DFF43294">
+          <dmn:text>-</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_FA3F5054-F70C-45CD-97E5-15A6104CADAE">
+          <dmn:text>"内容は30文字以内です。"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry id="_33258EEA-E827-456E-8CA3-0D36EEE39EDA">
+          <dmn:text>"FAILED"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text/>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_4353D9A1-2A70-46E5-85A5-D03AC21F1AA5">
+        <dmn:inputEntry id="_31CA248F-F609-4A82-BBBE-358F7802C441">
+          <dmn:text>-</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_31B90424-C4D5-45A6-81A7-1DC6A6F4EAA2">
+          <dmn:text>string length() &gt; 10</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_C575C54A-5B72-4EB5-AD82-D60378B2CCE2">
+          <dmn:text>"名前は10文字以内です。"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry id="_98AC8610-6BF0-47F9-98A7-23B22613C29D">
+          <dmn:text>"FAILED"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text/>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_9D8034F8-5063-454C-85CB-7549AA35268F">
+        <dmn:inputEntry id="_2E40A25F-4E08-4F9A-AEB8-E1436A6EA0F3">
+          <dmn:text>!starts with( formRequest.content, "START!!" )</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_1DCAA381-86AC-46DB-A7FC-8E5EB6D4C29E">
+          <dmn:text>-</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_C56F9703-13FF-4611-BF5C-316DC24C6BDB">
+          <dmn:text>"内容は「START!!」から初めてください。"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry id="_228C2C01-586C-416E-AB18-55FF882376B0">
+          <dmn:text>"FAILED"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text/>
+        </dmn:annotationEntry>
+      </dmn:rule>
+    </dmn:decisionTable>
+  </dmn:decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram id="_F7C4E38E-F6E9-4DCD-BF1D-A931C67D60E0" name="DRG">
+      <di:extension>
+        <kie:ComponentsWidthsExtension>
+          <kie:ComponentWidths dmnElementRef="_EF2068F0-2C0E-4FD4-B627-F962532BCCFD">
+            <kie:width>50</kie:width>
+            <kie:width>200</kie:width>
+            <kie:width>192</kie:width>
+            <kie:width>284</kie:width>
+            <kie:width>284</kie:width>
+            <kie:width>271</kie:width>
+          </kie:ComponentWidths>
+        </kie:ComponentsWidthsExtension>
+      </di:extension>
+      <dmndi:DMNShape id="dmnshape-drg-_AD56B6CB-A7A4-41B3-8388-4BEC80F3DE34" dmnElementRef="_AD56B6CB-A7A4-41B3-8388-4BEC80F3DE34" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="693" y="99" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-drg-_F462DBD7-A2A5-41CF-9415-9F7D6E72C57B" dmnElementRef="_F462DBD7-A2A5-41CF-9415-9F7D6E72C57B" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="693" y="227" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="dmnedge-drg-_C8DF134D-C8F4-49D5-B04B-4BB26FB9EC01-AUTO-SOURCE-AUTO-TARGET" dmnElementRef="_C8DF134D-C8F4-49D5-B04B-4BB26FB9EC01">
+        <di:waypoint x="743" y="99"/>
+        <di:waypoint x="743" y="277"/>
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</dmn:definitions>
